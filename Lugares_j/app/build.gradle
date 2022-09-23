@@ -4,16 +4,14 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-//para generar un enlace directo entre la vista (xml) y el codigo .kt
+//Para generar un enlace directo entre la vista (xml) y el código .kt
 android.buildFeatures.viewBinding true
 
-
 android {
-    namespace 'com.example.lugares_cla1'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.lugares_cla1"
+        applicationId "com.lugares_j"
         minSdk 27
         targetSdk 32
         versionCode 1
@@ -43,7 +41,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation platform('com.google.firebase:firebase-bom:30.4.1')
+    implementation platform('com.google.firebase:firebase-bom:28.0.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
