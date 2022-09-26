@@ -1,6 +1,7 @@
 package com.example.lugares_cla1
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -50,38 +51,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun haceRegistro2() {
-       val email =binding.etEmail.text.toString()
+       //Recuperamos la informacion que ingreso el usuario
+        val email =binding.etEmail.text.toString()
         val clave = binding.etClave.text.toString()
+
         //se llama a la funcion para crear un usuario de Firebase (correo/contraseña)
-        auth.signInWithEmailAndPassword(email,clave)
-            .addOnCompleteListener(this) {task ->
-                var user: FirebaseUser? =null
+        auth.createUserWithEmailAndPassword(email,clave)
+            .addOnCompleteListener(this) { task ->
+
+
+                var user: FirebaseUser? =null //el signo de pregunta es para decir que esa variable puede ser nula
                 if(task.isSuccessful){
                     Log.d(  "autenticando","usuario creado")
-                    user : auth.currentUser  //Recupero la info del usuario creado
-
+                    val user = auth.currentUser //Recupero la info del usuario creado
 
                 }else {
-                    Log.d(: "autenticando",  "Error creando usuario")
+                    Log.d(  "autenticando","Error creando usuario")
                     val user=null
                 }
                 actualiza(user)
             }
 
-
-
-
-
-
-
-
     }
 
-
-
-
-
     private fun haceLogin (){
+        // recuperamos la info que ingreso el usuario
         val email =binding.etEmail.text.toString()
         val clave = binding.etClave.text.toString()
         //se llama a la funcion para crear un usuario de Firebase (correo/contraseña)
@@ -90,8 +84,6 @@ class MainActivity : AppCompatActivity() {
                 var user: FirebaseUser? =null
                 if(task.isSuccessful){
                     Log.d(  "autenticando","usuario creado")
-                    user : auth.currentUser  //Recupero la info del usuario creado
-
 
                 }else {
                     Log.d( "autenticando",  "Error creando usuario")
@@ -101,4 +93,19 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    private fun actualiza(user: FirebaseUser?) {
+        // si hay un usuario definido se pasa a la pantalla principal (Activity)
+        if(user!=null){
+            //se pasa a la otra pantalla
+            val intent = Intent(this, Principal::class.java) //las intent son como pantallas
+            startActivity(intent)//Asi pasamos a la otra pantalla
+
+        }
+    }
+    //Aca va otro codoigo
+    public override fun onStart(){
+        super.onStart()
+        val usuario=auth.currentUser
+        actualiza(usuario)
+    }
 }
