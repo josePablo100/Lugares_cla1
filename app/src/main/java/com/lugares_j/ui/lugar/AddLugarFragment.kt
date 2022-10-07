@@ -1,4 +1,4 @@
-package com.example.lugares_cla1.ui.lugar
+package com.lugares_j.ui.lugar
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.lugares_cla1.AddLugarViewModel
 import com.example.lugares_cla1.R
 import com.example.lugares_cla1.databinding.FragmentAddLugarBinding
-import com.example.lugares_cla1.databinding.FragmentLugarBinding
 import com.lugares_j.model.Lugar
 import com.lugares_j.model.LugarViewModel
 

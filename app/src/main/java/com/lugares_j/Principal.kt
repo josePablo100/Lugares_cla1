@@ -1,9 +1,8 @@
-package com.example.lugares_cla1
+package com.lugares_j
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lugares_cla1.R
 import com.example.lugares_cla1.databinding.ActivityPrincipalBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

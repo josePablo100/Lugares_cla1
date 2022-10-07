@@ -1,4 +1,4 @@
-package com.example.lugares_cla1
+package com.lugares_j
 
 
 import android.content.Intent

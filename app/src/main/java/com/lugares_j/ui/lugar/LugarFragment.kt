@@ -1,4 +1,4 @@
-package com.example.lugares_cla1.ui.lugar
+package com.lugares_j.ui.lugar
 
 import android.os.Bundle
 import android.view.LayoutInflater
