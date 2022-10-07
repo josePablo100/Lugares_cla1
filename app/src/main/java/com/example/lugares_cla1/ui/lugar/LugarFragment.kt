@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.lugares_cla1.R
 
 import com.example.lugares_cla1.databinding.FragmentLugarBinding
 import com.lugares_j.model.LugarViewModel
@@ -28,6 +30,10 @@ class LugarFragment : Fragment() {
             ViewModelProvider(this).get(LugarViewModel::class.java)
 
         _binding = FragmentLugarBinding.inflate(inflater, container, false)
+
+        binding.addLugarFabButtom.setOnClickListener{
+            findNavController().navigate(R.id.action_nav_lugar_to_addLugarFragment)
+        }
         return binding.root
 
 
