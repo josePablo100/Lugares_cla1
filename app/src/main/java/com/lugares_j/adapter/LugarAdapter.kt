@@ -2,9 +2,11 @@ package com.lugares_j.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lugares_cla1.databinding.FragmentAddLugarBinding
 import com.example.lugares_cla1.databinding.LugarFilaBinding
+import com.lugares_j.ui.lugar.LugarFragmentDirections
 
 
 class LugarAdapter :RecyclerView.Adapter<LugarAdapter.LugarViewHolder>(){
@@ -14,6 +16,14 @@ inner class LugarViewHolder(private val itemBinding: LugarFilaBinding)
             itemBinding.tvNombre.text = lugar.nombre
             itemBinding.tvCorreo.text = lugar.correo
             itemBinding.tvTelefono.text = lugar.telefono
+            itemBinding.vistasFila.setOnClickListener{
+
+                // creo una accion para navegar a updateLugar pasando un argumento Lugar
+                val action = LugarFragmentDirections.actionNavLugarToUpdateLugarFragment(lugar)
+
+                //efectivamente se pasa al fracmento
+                itemView.findNavController().navigate(action)
+            }
 
         }
     }

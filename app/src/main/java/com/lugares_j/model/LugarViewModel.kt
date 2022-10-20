@@ -13,7 +13,7 @@ class LugarViewModel(application: Application) : AndroidViewModel(application) {
     val getLugares: LiveData<List<Lugar>>
 
     init {
-        val lugarDao = LugarDatabase.getDatabase(application).lugarDao()
+        val lugarDao = LugarDatabase.getDatabase(application).LugarDao()
         lugarRepository = LugarRepository(lugarDao)
         getLugares = lugarRepository.getLugares
     }
