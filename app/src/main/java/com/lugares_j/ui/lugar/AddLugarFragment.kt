@@ -51,7 +51,7 @@ class AddLugarFragment : Fragment() {
                 val telefono = binding.etTelefono.text.toString()
                 val web = binding.etWeb.text.toString()
                 val lugar = Lugar(
-                    0, nombre, correo, telefono, web,
+                    "", nombre, correo, telefono, web,
                     0.0, 0.0, 0.0, "", ""
                 )
 

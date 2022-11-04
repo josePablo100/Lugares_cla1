@@ -42,4 +42,6 @@
     <string name="msg_datos">Faltan datos</string>
     <string name="error">Error</string>
 
+    <string name="menu_home">Home</string>
+
 </resources>

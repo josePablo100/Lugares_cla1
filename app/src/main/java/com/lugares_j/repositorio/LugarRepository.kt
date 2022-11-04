@@ -9,19 +9,15 @@ class LugarRepository(private val lugarDao: LugarDao) {
 
 
     suspend fun saveLugar(lugar: Lugar) {
-        if (lugar.id == null) { //Es un lugar nuevo
-            lugarDao.addLugar(lugar)
-        } else { //es un lugar ya registrado
-            lugarDao.updateLugar(lugar)
+        lugarDao.saveLugar(lugar)
 
-        }
     }
-suspend fun deleteLugar(lugar: Lugar){
-if (lugar.id!=null) {
+
+    fun deleteLugar(lugar: Lugar){
     lugarDao.deleteLugar(lugar)
 }
 
 }
 
-    val getLugares : LiveData<List<Lugar>> = lugarDao.getLugares()
+    val getLugares : MutableLiveData<List<Lugar>> = lugarDao.getLugares()
 }
