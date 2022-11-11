@@ -2,6 +2,7 @@ package com.lugares_j.ui.lugar
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.lugares_cla1.Manifest
 import com.example.lugares_cla1.R
 import com.example.lugares_cla1.databinding.FragmentAddLugarBinding
 import com.example.lugares_cla1.databinding.FragmentUpdateLugarBinding
@@ -47,13 +49,14 @@ class UpdateLugarFragment : Fragment() {
         binding.etTelefono.setText(args.lugar.telefono)
         binding.etWeb.setText(args.lugar.web)
         binding.tvLongitud.text = args.lugar.longitud.toString()
-        binding.tvLatitud.text = args.lugar.longitud.toString()
-        binding.tvAltura.text = args.lugar.longitud.toString()
+        binding.tvLatitud.text = args.lugar.latitud.toString()
+        binding.tvAltura.text = args.lugar.altura.toString()
 
         binding.btUpdate.setOnClickListener { updateLugar() }
         binding.btDelete.setOnClickListener {deleteLugar()}
 
         binding.btEmail.setOnClickListener {escribirCorreo()}
+        binding.btPhone.setOnClickListener {llamarLugar()}
         binding.btPhone.setOnClickListener {escribirLugar()}
         binding.btWhatsapp.setOnClickListener {enviarWhatsapp()}
         binding.btWeb.setOnClickListener {verWeb()}
@@ -94,6 +97,36 @@ class UpdateLugarFragment : Fragment() {
     private fun escribirLugar() {
         TODO("Not yet implemented")
     }
+
+    private fun llamarLugar() {
+        val valor = binding.etTelefono.text.toString()
+        if (valor.isNotEmpty()) { // si el telegono tiene algo intenta mandar mensaje
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:$valor")
+            if (requireActivity()
+                    .checkSelfPermission(Manifest.permission.CALL_PHONE)!=
+                PackageManager.PERMISSION_GRANTED
+
+                PackageManager.PERMISSION_GRANTED) {
+                requireActivity()
+                    .requestPermissions(
+                        arrayOf(
+                            Manifest.permission.CALL_PHONE
+                        ), 105
+                    )
+
+
+            }else{
+                requireActivity().startActivity()
+
+        }else { //si no hay info no se puede realizar la accion
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.msg_data), Toast.LENGTH_LONG).show()
+        }
+    }
+
+}
 
     private fun enviarWhatsapp() {
         val valor = binding.etTelefono.text.toString()
@@ -139,8 +172,27 @@ class UpdateLugarFragment : Fragment() {
         }
     }
 
-    private fun verMapa() {
-        TODO("Not yet implemented")
+    private fun verEnMapa() {
+     val latitud = binding.tvLatitud.text.toString().toDouble()
+        val longitud = binding.tvLongitud.text.toString().toDouble()
+        if (latitud.isFinite() && longitud.isFinite()) { // si el sitio web tiene algo intenta correrlo
+
+            val uri = "geo:$latitud,$longitud?z18"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+
+
+            Intent.EXTRA_SUBJECT,
+            getString(R.string.msg_saludos) + "" + binding.etNombre.text)
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                getString(R.string.msg_mensaje_correo))
+            startActivity(intent)
+
+        }else { //si no hay info no se puede realizar la accion
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.msg_data), Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun deleteLugar() {
